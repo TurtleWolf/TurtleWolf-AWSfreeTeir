@@ -77,6 +77,39 @@ iptables -A INPUT -p tcp --dport 22 -m recent --update --seconds 60 --hitcount 4
 ```
 ## install Apache
 sudo apt-get install apache2 -y  
+
+### PHP
+
+    39  sudo add-apt-repository ppa:ondrej/php
+    38  sudo apt-get install python-software-properties
+    40  sudo apt-get install software-properties-common
+    41  sudo add-apt-repository ppa:ondrej/php
+    42  sudo apt update
+    43  apt list --upgradable
+    44  sudo apt install -y php7.2
+    45  sudo apt install php7.2-curl php7.2-gd php7.2-json php7.2-mbstring php7.2-xml
+    46  sudo apt install apache2 libapache2-mod-php7.2
+    47  sudo apt install php7.2-mysql
+    48  sudo apt install phpmyadmin
+    49  sudo systemctl restart apache2.service
+    50  sudo systemctl restart mysql.service
+    51  sudo fail2ban-client status
+    52  sudo systemctl status -l fail2ban
+    53  sudo systemctl status -l apache2
+    54  cd /var/www
+    55  ls
+    57  cd html
+    58  ls
+    59  touch index.php
+    60  sudo touch index.php
+    61  sudo nano index.php
+    62  ls
+    63  rm index.html
+    64  sudo rm index.html
+    65  ls
+    66  rm index.php
+    67  sudo rm index.php
+
 ## CodeIgniter
 cd /var/www  
 which apache2  
@@ -106,236 +139,60 @@ cd CodeIgniter
 
     1  sudo apt update
     2  sudo apt upgrade
-    4  sudo apt-get install lamp-server^
-    5  which apache2
-    6  sudo mysql_secure_installation
-    7  mysql
-    8  sudo mysql
-    9  php -v
-   10  sudo mysql
-   11  cd /var/www/html
-   12  ls
-   13  sudo git clone https://github.com/ci-bonfire/Bonfire.git
-   14  ls
-   15  sudo nano /etc/apache2/sites-available/000-default.conf
-   16  sudo service apache2 reload
-   17  sudo nano /etc/apache2/sites-available/000-default.conf
-   18  sudo service apache2 reload
-   19  sudo nano /var/www/html/Bonfire/application/config/database.php
-   20  sudo service apache2 reload
-   21  sudo nano /var/www/html/Bonfire/application/config/database.php
-   22  sudo service apache2 reload
-   23  sudo nano /var/www/html/Bonfire/application/config/database.php
-   24  sudo service apache2 reload
-   25  sudo reboot
-   26  sudo nano /var/www/html/Bonfire/application/config/config.php
-   27  sudo service apache2 reload
-   28  sudo nano /var/www/html/Bonfire/application/config/config.php
-   29  sudo service apache2 reload
-   30  sudo nano /var/www/html/Bonfire/application/config/config.php
-   31  sudo service apache2 reload
-   32  sudo mysql
-   33  sudo nano /var/www/html/Bonfire/application/config/config.php
-   34  sudo service apache2 reload
-   35  history
-   36  sudo nano /var/www/html/Bonfire/application/config/config.php
-   37  sudo nano /var/www/html/Bonfire/application/config/database.php
-   38  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
-   39  sudo nano /var/www/html/Bonfire/application/config/database.php
-   40  sudo service apache2 reload
-   41  sudo reboot
-   42  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
-   43  sudo nano /var/www/html/Bonfire/application/config/database.php
-   44  ping 10.0.16.22
-   45  ping 10.0.16.22:3306
-   46  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
-   47  ping 3.212.145.169
-   48  telnet 10.0.16.22 3306
-   49  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
-   50  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com:3306
-   51  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com -P 3306
-   52  sudo phpenmod mbstring
-   53  sudo systemctl restart apache2
-   54  sudo mysql
-   55  sudo nano /var/www/html/Bonfire/application/config/database.php
-   56  sudo systemctl restart apache2
-   57  sudo nano /var/www/html/Bonfire/application/config/database.php
-   58  sudo reboot
-   59  sudo nano /var/www/html/Bonfire/application/config/database.php
-   60  sudo systemctl restart apache2
-   61  sudo mysql
-   62  sudo nano /var/www/html/Bonfire/application/config/database.php
-   63  sudo systemctl restart apache2
-   64  sudo nano /var/www/html/Bonfire/application/config/database.php
-   65  history
+    3  sudo apt-get install lamp-server^
+    4  sudo mysql
+mariadb -u root -p
+MariaDB [(none)]>
+```
+CREATE DATABASE codeigniter;
+GRANT ALL ON codeigniter.* TO 'appuser'@'localhost' IDENTIFIED BY 'Aa1!Aa1!';
+SHOW DATABASES;
+SELECT HOST, USER, PASSWORD FROM mysql.user;
+SHOW GRANTS FOR 'appuser'@'localhost';
+USE codeigniter;
+```
 
-    1  sudo apt update
-    2  sudo apt upgrade
-    3  which apache2
-    4  sudo apt-get install lamp-server^
-    5  sudo mysql
-    6  cd /var/www/html
-    7  sudo git clone https://github.com/ci-bonfire/Bonfire.git
-    8  ls -al
+```
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password'; 
+FLUSH PRIVILEGES; 
+CREATE USER 'admin'@'%' IDENTIFIED BY 'password'; 
+CREATE USER 'admin'@'192.168.1.%' IDENTIFIED BY 'password'; 
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost'; 
+FLUSH PRIVILEGES; 
+mariadb -u admin -p
+mariadb -u admin -p<password> 
+GRANT SELECT ON *.* TO 'readonlyuser'@'localhost' IDENTIFIED BY 'password'; 
+CREATE DATABASE mysampledb;
+SHOW DATABASES;
+SELECT HOST, USER, PASSWORD FROM mysql.user;
+GRANT SELECT ON mysampledb.* TO 'appuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON mysampledb.* TO 'appuser'@'localhost' IDENTIFIED BY 'password';
+SHOW GRANTS FOR 'appuser'@'localhost';
+DELETE FROM mysql.user WHERE user='myuser' AND host='localhost';
+USE mysampledb;
+CREATE TABLE Employees (Name char(15), Age int(3), Occupation char(15));
+INSERT INTO Employees VALUES ('Joe Smith', '26', 'Ninja');
+SELECT * FROM Employees;
+DELETE FROM Employees WHERE Name = 'Joe Smith';
+DROP TABLE Employees;
+DROP DATABASE mysampledb;
+mysqldump -u admin -p --databases mysampledb > mysampledb.sql
+sudo mariadb < mysampledb.sql
+```
+    5  sudo mysql_secure_installation
+    //   sudo apt install phpmyadmin
+    7  cd /var/www/html
     9  sudo nano /etc/apache2/sites-available/000-default.conf
-   10  sudo nano /var/www/html/Bonfire/application/config/database.php
-   11  sudo nano /var/www/html/Bonfire/application/config/config.php
-   12  sudo service apache2 reload
-   13  sudo systemctl status -l apache2
-   14  sudo mysql_secure_installation
-   15  sudo reboot
-   16  sudo nano /var/www/html/Bonfire/application/config/config.php
-   17  sudo nano /var/www/html/Bonfire/application/config/database.php
-   18  sudo service apache2 reload
-   19  sudo nano /var/www/html/Bonfire/application/config/config.php
-   20  sudo service apache2 reload
-   21  sudo nano /etc/apache2/sites-available/000-default.conf
-   22  sudo service apache2 reload
-   23  sudo apt update
-   24  sudo apt upgrade
-   25  clear
-   26  sudo mysql
-   27  cd /var/www/html
-   28  ls -al
-   29  sudo nano /etc/apache2/sites-available/000-default.conf
-   30  sudo nano /var/www/html/Bonfire/application/config/config.php
-   31  sudo nano /var/www/html/Bonfire/application/config/database.php
-   32  sudo service apache2 reload
-   33  sudo nano /var/www/html/Bonfire/application/config/database.php
-   34  sudo mysql
-   35  sudo service apache2 reload
-   36  sudo service apache2 restart
-   37  sudo mysql
-   38  history
+    8  sudo git clone https://github.com/ci-bonfire/Bonfire.git
+    10  sudo nano /var/www/html/Bonfire/application/config/database.php
+    11  sudo nano /var/www/html/Bonfire/application/config/config.php
+    12  history
 
+    24  sudo service apache2 reload
+    25  sudo reboot
+    38  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
+    48  telnet 10.0.16.22 3306
 
-###PHP
-   38  sudo apt-get install python-software-properties
-   39  sudo add-apt-repository ppa:ondrej/php
-   40  sudo apt-get install software-properties-common
-   41  sudo add-apt-repository ppa:ondrej/php
-   42  sudo apt update
-   43  apt list --upgradable
-   44  sudo apt install -y php7.2
-   45  sudo apt install php7.2-curl php7.2-gd php7.2-json php7.2-mbstring php7.2-xml
-   46  sudo apt install apache2 libapache2-mod-php7.2
-   47  sudo apt install php7.2-mysql
-   48  sudo apt install phpmyadmin
-   49  sudo systemctl restart apache2.service
-   50  sudo systemctl restart mysql.service
-   51  sudo fail2ban-client status
-   52  sudo systemctl status -l fail2ban
-   53  sudo systemctl status -l apache2
-   54  cd /var/www
-   55  ls
-   56  cd html'
-   57  cd html
-   58  ls
-   59  touch index.php
-   60  sudo touch index.php
-   61  sudo nano index.php
-   62  ls
-   63  rm index.html
-   64  sudo rm index.html
-   65  ls
-   66  rm index.php
-   67  sudo rm index.php
-
-    3  sudo systemctl status -l fail2ban
-    5  sudo fail2ban-client status
-    8  which apache2
-    9  sudo apt update
-   10  apt list --upgradeable
-   12  sudo apt upgrade
-   13  which apache2
-   14  sudo systemctl status -l fail2ban
-   16  apt list --upgradeable
-   17  sudo fail2ban-client status
-   sudo tasksel install lamp-server
-   19  sudo apt-get install lamp-server^
-   46  sudo wget https://github.com/bcit-ci/CodeIgniter/archive/3.1.10.zip
-   52  sudo unzip 3.1.10.zip
-   53  sudo mv CodeIgniter-3.1.10 /var/www/html/codeigniter
-   69  sudo nano /var/www/html/codeigniter/application/config/database.php
-   70  sudo nano /var/www/html/codeigniter/application/config/config.php
-   71  sudo systemctl restart apache2.service
-   74  sudo systemctl status -l apache2
-   76  sudo nano var/www/CodeIgniter/application/config/autoload.php
-   78  sudo nano /var/www/html/CodeIgniter/application/config/autoload.php
-   80  cd /var/www/html/codeigniter/application/view
-   83  cd /var/www/html/codeigniter/application/views
-   95  rm welcome_message.php
-   96  sudo rm welcome_message.php
-  103  rm -R codeigniter
-  105  sudo rm -R codeigniter
-  115  sudo nano /var/www/html/codeigniter/application/config/routes.php
-  123  sudo touch helloworld_model.php
-  125  sudo nano /var/www/html/codeigniter/application/models/helloworld_model.php
-  132  sudo touch helloworld.php
-  134  sudo nano /var/www/html/codeigniter/application/controllers/helloworld.php
-  140  sudo touch helloworld_view.php
-  141  sudo nano /var/www/html/codeigniter/application/views/helloworld_view.php
-  142  sudo nano /var/www/html/codeigniter/application/config/config.php
-  143  sudo systemctl restart apache2.service
-    4  sudo tasksel install lamp-server
-    5  sudo apt-get install lamp-server^
-    6  cd /var/www/html/
-
-   17  git clone https://github.com/ci-bonfire/Bonfire.git
-
-   19  sudo git clone https://github.com/ci-bonfire/Bonfire.git
-
-   40  sudo /var/www/html/Bonfire/application/config/nano config.php
-   41  sudo nano /var/www/html/Bonfire/application/config/config.php
-   42  cd /etc/apache2/sites-available
-
-   44  sudo cp 000-default.conf bonfire.conf
-
-   46  sudo nano /etc/apache2/sites-available
-   47  sudo nano /etc/apache2/sites-available/bonfire.conf
-   48  sudo nano /etc/apache2/sites-available/000-default.conf
-   49  sudo systemctl restart apache2.service
-   50  sudo systemctl status -l apache2
-   51  sudo service apache2 reload
-   52  sudo systemctl status -l apache2
-
-   57  sudo nano /var/www/html/Bonfire/application/config/config.php
-   58  sudo nano /var/www/html/Bonfire/application/config/database.php
-
-   61  sudo nano /var/www/html/Bonfire/application/config/database.php
-
-   63  sudo apt-get install php5-mysql
-   64  sudo apt install php5-mysql
-
-   68  sudo nano /var/www/html/Bonfire/application/config/database.php
-   69  sudo add-apt-repository -y ppa:ondrej/php
-
-   73  sudo apt install php5.6
-   74  php -v
-   75  cd /etc/apache2
-   79  ls -l mods-*/*php*
-
-   87  sudo a2dismod php5.6
-   88  sudo a2enmod php7.2
-
-   90  sudo apt-get install php7.2-mysql
-
-   93  sudo systemctl restart apache2
-
-   96  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
-
-   99  sudo nano /var/www/html/Bonfire/application/config/database.php
-  101  sudo nano /etc/hosts
-
-    4  sudo apt-get install lamp-server^
-    8  sudo mysql
-   11  cd /var/www/html
-   13  sudo git clone https://github.com/ci-bonfire/Bonfire.git
-   15  sudo nano /etc/apache2/sites-available/000-default.conf
-   18  sudo service apache2 reload
-   19  sudo nano /var/www/html/Bonfire/application/config/database.php
-   26  sudo nano /var/www/html/Bonfire/application/config/config.php
-   27  sudo service apache2 reload
 ## Nginx Installation
     5  wget http://nginx.org/keys/nginx_signing.key
     6  apt-key add nginx_signing.key
