@@ -17,6 +17,9 @@ aws_VPC=10.0.0.0/24
 # Port for accessing SSH
 SSH_PORT=2222
 
+# Port for DEVelopment; ReAct :3000
+DEV_PORT=3000
+
 # MariaDB password
 SECRET=secret
 
@@ -120,6 +123,7 @@ ufw allow proto tcp from "${aws_VPC}" to any port "${SSH_PORT}"
 # ufw allow from "${aws_VPC}" proto tcp to any port "${SSH_PORT}"
 ufw allow 80/tcp
 ufw allow 8080/tcp
+ufw allow proto tcp from "${IP_ADDRESS}" to any port "${DEV_PORT}"
 ufw allow 443/tcp
 # ufw deny ftp
 # sudo ufw show added

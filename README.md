@@ -141,57 +141,74 @@ cd CodeIgniter
     2  sudo apt upgrade
     3  sudo apt-get install lamp-server^
     4  sudo mysql
-mariadb -u root -p
+    mariadb -u root -p
 MariaDB [(none)]>
 ```
 CREATE DATABASE codeigniter;
 GRANT ALL ON codeigniter.* TO 'appuser'@'localhost' IDENTIFIED BY 'Aa1!Aa1!';
 SHOW DATABASES;
-SELECT HOST, USER, PASSWORD FROM mysql.user;
+SELECT HOST, USER, authentication_string FROM mysql.user;
 SHOW GRANTS FOR 'appuser'@'localhost';
 USE codeigniter;
 ```
 
-```
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'password'; 
-FLUSH PRIVILEGES; 
-CREATE USER 'admin'@'%' IDENTIFIED BY 'password'; 
-CREATE USER 'admin'@'192.168.1.%' IDENTIFIED BY 'password'; 
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost'; 
-FLUSH PRIVILEGES; 
-mariadb -u admin -p
-mariadb -u admin -p<password> 
-GRANT SELECT ON *.* TO 'readonlyuser'@'localhost' IDENTIFIED BY 'password'; 
-CREATE DATABASE mysampledb;
-SHOW DATABASES;
-SELECT HOST, USER, PASSWORD FROM mysql.user;
-GRANT SELECT ON mysampledb.* TO 'appuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL ON mysampledb.* TO 'appuser'@'localhost' IDENTIFIED BY 'password';
-SHOW GRANTS FOR 'appuser'@'localhost';
-DELETE FROM mysql.user WHERE user='myuser' AND host='localhost';
-USE mysampledb;
-CREATE TABLE Employees (Name char(15), Age int(3), Occupation char(15));
-INSERT INTO Employees VALUES ('Joe Smith', '26', 'Ninja');
-SELECT * FROM Employees;
-DELETE FROM Employees WHERE Name = 'Joe Smith';
-DROP TABLE Employees;
-DROP DATABASE mysampledb;
-mysqldump -u admin -p --databases mysampledb > mysampledb.sql
-sudo mariadb < mysampledb.sql
-```
     5  sudo mysql_secure_installation
     //   sudo apt install phpmyadmin
-    7  cd /var/www/html
-    9  sudo nano /etc/apache2/sites-available/000-default.conf
-    8  sudo git clone https://github.com/ci-bonfire/Bonfire.git
-    10  sudo nano /var/www/html/Bonfire/application/config/database.php
-    11  sudo nano /var/www/html/Bonfire/application/config/config.php
-    12  history
+    6  cd /var/www/html
+    7  sudo git clone https://github.com/ci-bonfire/Bonfire.git
+    8  sudo nano /var/www/html/Bonfire/application/config/config.php
+```
+$config['base_url']     = 'http:// and always put the trailing /';
+```    
+    9  sudo nano /var/www/html/Bonfire/application/config/database.php
+```
+    'hostname'     => '127.0.0.1',
+    'username'     => 'appuser',
+    'password'     => 'Aa1!Aa1!',
+    'database'     => 'codeigniter',
+    'dbdriver'     => 'mysqli',
+    'dbprefix'     => 'bf_',
+```
+    10  sudo nano /etc/apache2/sites-available/000-default.conf
+```
+DocumentRoot /var/www/html/Bonfire/public
+```    
+sudo nano /var/www/html/Bonfire/application/config/autoload.php
+```
+$autoload['libraries'] = array('database', 'email', 'session');
+```
 
-    24  sudo service apache2 reload
-    25  sudo reboot
-    38  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
-    48  telnet 10.0.16.22 3306
+    11  sudo service apache2 reload
+    12  sudo reboot
+    13  history
+
+    14  ping mysql.cclyqephhrtn.us-east-1.rds.amazonaws.com
+    15  telnet 10.0.16.22 3306
+
+## Node
+## Express
+## React
+   36  sudo apt-get install nodejs
+   38  node -v
+   42  npm -v
+   43  sudo npm -v
+   44  sudo apt install npm
+   45  npm -v
+   46  node
+   54  npm init
+   63  npm -v
+   73  sudo apt-get install curl python-software-properties
+   74  sudo apt-get install curl software-properties-common
+   75  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+   76  sudo apt-get install -y nodejs
+   77  sudo npx create-react-app my-app
+   81  sudo npm update
+   83  sudo ufw allow proto tcp from 71.88.119.101 to any port 3000
+   85  sudo reboot
+   86  sudo ufw status
+   89  cd my-app
+   90  npm start
+sudo ufw allow proto tcp from 71.88.119.101 to any port 3000
 
 ## Nginx Installation
     5  wget http://nginx.org/keys/nginx_signing.key
