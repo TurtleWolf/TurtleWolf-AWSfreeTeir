@@ -123,7 +123,8 @@ ufw allow proto tcp from "${aws_VPC}" to any port "${SSH_PORT}"
 # ufw allow from "${aws_VPC}" proto tcp to any port "${SSH_PORT}"
 ufw allow 80/tcp
 ufw allow 8080/tcp
-ufw allow proto tcp from "${IP_ADDRESS}" to any port "${DEV_PORT}"
+# ufw allow proto tcp from "${IP_ADDRESS}" to any port "${DEV_PORT}"
+ufw allow "${DEV_PORT}"/tcp
 ufw allow 443/tcp
 # ufw deny ftp
 # sudo ufw show added
