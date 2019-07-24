@@ -209,6 +209,8 @@ $autoload['libraries'] = array('database', 'email', 'session');
    89  cd my-app
    90  npm start
 sudo ufw allow proto tcp from 71.88.119.101 to any port 3000
+  106  cd my-app
+  108  sudo npm i react-router-dom
 
 ## Nginx Installation
     5  wget http://nginx.org/keys/nginx_signing.key

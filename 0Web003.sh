@@ -20,6 +20,9 @@ SSH_PORT=2222
 # Port for DEVelopment; ReAct :3000
 DEV_PORT=3000
 
+# Port for DEVelopment; ReAct StoryBook :9009
+STORY_PORT=9009
+
 # MariaDB password
 SECRET=secret
 
@@ -125,6 +128,8 @@ ufw allow 80/tcp
 ufw allow 8080/tcp
 # ufw allow proto tcp from "${IP_ADDRESS}" to any port "${DEV_PORT}"
 ufw allow "${DEV_PORT}"/tcp
+# ufw allow proto tcp from "${IP_ADDRESS}" to any port "${STORY_PORT}"
+ufw allow "${STORY_PORT}"/tcp
 ufw allow 443/tcp
 # ufw deny ftp
 # sudo ufw show added
